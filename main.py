@@ -1,6 +1,5 @@
 import lxml.html
 import requests
-import site_downloader
 import database
 
 
@@ -20,7 +19,6 @@ class Scraping:
             self.etree = self.tree.xpath('//div[contains(@class, "news-list")]/ul/li[not(child::hr)]')
             for element in self.etree:
                 self.match = element.xpath('.//span[@class="potMatchLink"]/a')[0].text_content().strip()
-                print(self.match)
                 self.date = element.xpath('.//span [@class="potMatchLink"]/following-sibling::text()')[0].strip()
                 self.result = element.xpath('.//div[@class="large-5 medium-5 hide-for-small columns arrow-right-data"]/b/text()')[0]
                 self.data.append([self.match, self.date, self.result])
